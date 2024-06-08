@@ -35,10 +35,6 @@ This is a web page that uses the GitHub API to display the specified GitHub user
 
 4. Open the `index.html` file in a browser to see the result.
 
-## File Structure
-
-- `index.html` - The main HTML file containing the structure and logic of the application.
-- `style.css` - The stylesheet file containing all the styles for the application.
 
 ## License
 
