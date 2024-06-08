@@ -2,7 +2,7 @@
 
 # GitHub User Information Page
 
-This is a web page that uses the GitHub API to display the specified GitHub user's avatar, bio, profile link, and the top 3 repositories sorted by star count. Each repository shows its name, description, star count, fork count, and primary language.
+This is a web page that uses the GitHub API to display the specified GitHub user's avatar, bio, profile link, and the top repositories sorted by star count. Each repository shows its name, description, star count, fork count, and primary language.
 
 ## Features
 
