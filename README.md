@@ -42,7 +42,7 @@ This is a web application that uses the GitHub API to display the specified GitH
 
 This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](LICENSE). For details, see the [LICENSE](LICENSE) file.
 
-© 2020-2024 Haoyang. All rights reserved.
+© 2024 Haoyang. All rights reserved.
 
 ## Contributing
 
