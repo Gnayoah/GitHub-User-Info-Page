@@ -1,3 +1,5 @@
+[简体中文](https://github.com/Gnayoah/GitHub-User-Info-Page/blob/main/README_CN.md)
+
 # GitHub User Information Page
 
 This is a web page that uses the GitHub API to display the specified GitHub user's avatar, bio, profile link, and the top 3 repositories sorted by star count. Each repository shows its name, description, star count, fork count, and primary language.
