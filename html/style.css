@@ -3,34 +3,38 @@ body, html {
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: #ffffff; /* 设置背景颜色为白色 */
-    font-family: Arial, sans-serif;
-    color: #000000; /* 默认文本颜色为黑色 */
+    font-family: 'HarmonyOS Sans SC', sans-serif; /* 应用自定义字体 */
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 40vw; /* 固定宽度为屏幕的40% */
-    margin: auto;
+    width: 60vw; /* 固定宽度为屏幕的60% */
+    margin: 20px auto; /* 使 container 有上下边距，并水平居中 */
     background: #fff;
     padding: 20px;
     border-radius: 8px; /* 移除边框阴影 */
     flex-direction: row; /* 默认是水平布局 */
+    flex-grow: 1; /* 使 container 扩展以填满剩余空间 */
 }
 
 .profile {
-    text-align: center;
+    text-align: left; /* 居左对齐 */
     margin: 20px;
-    width: 250px; /* 加宽 profile div */
+    width: 300px; /* 设置 profile 宽度为300px */
+    flex-shrink: 0; /* 确保 profile 不会被压缩 */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px; /* 固定位置 */
 }
 
 .profile img {
     border-radius: 50%;
-    width: 150px;
+    width: 296px; /* 设置头像宽度为296px */
+    height: 296px; /* 设置头像高度为296px */
+    border: 2.3px solid #d6d6d6; /* 设置灰色边框 */
 }
 
 .profile a {
@@ -42,9 +46,22 @@ body, html {
     text-decoration: underline;
 }
 
-.profile p {
+.profile h2 {
     margin: 10px 0;
-    color: #555;
+    color: #1F2328; /* 设置昵称颜色 */
+}
+
+.profile p#username {
+    font-size: 20px; /* 设置用户名大小 */
+    color: #636C76; /* 设置用户名颜色 */
+    font-family: 'HarmonyOS Sans SC Light', sans-serif; /* 设置用户名字体 */
+    font-weight: 300; /* 设置字体粗细为300 */
+    margin: 0; /* 去掉用户名外边距 */
+}
+
+.profile p#bio {
+    margin: 10px 0;
+    color: #1F2328; /* 设置简介颜色 */
 }
 
 .repos {
@@ -77,13 +94,25 @@ body, html {
 .repos ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.repos li {
-    margin: 10px 0;
+.repos li.repo-item {
+    margin: 10px 10px 10px 0; /* 去掉左边距 */
     padding: 10px;
     background-color: #f2f3f5;
     border-radius: 8px;
+    width: calc(50% - 10px); /* 每行两个仓库，减去间距 */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px; /* 确保最小高度 */
+}
+
+.repos li.repo-item:nth-child(2n) {
+    margin-right: 0; /* 去掉右边距 */
 }
 
 .repos a {
@@ -99,6 +128,10 @@ body, html {
 .repos p {
     margin: 5px 0;
     color: #555;
+}
+
+.repos p.repo-details {
+    margin-top: auto; /* 确保此元素在列表项的底部 */
 }
 
 footer {
@@ -119,38 +152,16 @@ footer {
     .profile {
         width: 100%; /* 宽度为100% */
         text-align: center; /* 文本居中对齐 */
+        position: static; /* 取消固定位置 */
     }
 
     .repos {
         width: 100%; /* 宽度为100% */
-        text-align: center; /* 文本居中对齐 */
-    }
-}
-
-/* 深色模式布局 */
-@media (prefers-color-scheme: dark) {
-    body, html {
-        background-color: #181818; /* 设置背景颜色为深色 */
-        color: #ffffff; /* 设置文本颜色为白色 */
+        text-align: left; /* 文本居左对齐 */
     }
 
-    .container {
-        background: #242424; /* 设置容器背景颜色为深色 */
-    }
-
-    .profile a, .repos a {
-        color: #1e90ff; /* 设置链接颜色为亮蓝色 */
-    }
-
-    .repos-header h3 {
-        color: #ffffff; /* 设置标题颜色为白色 */
-    }
-
-    .repos li {
-        background-color: #333333; /* 设置仓库列表项背景颜色为深色 */
-    }
-
-    footer {
-        color: #cccccc; /* 设置页脚颜色为浅灰色 */
+    .repos li.repo-item {
+        width: 100%; /* 移动设备上每行一个仓库 */
+        margin-right: 0; /* 去掉右边距 */
     }
 }
