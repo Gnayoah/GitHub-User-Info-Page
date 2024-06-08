@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub 用户和仓库</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const githubUser = 'Gnayoah';  // 修改此处的 GitHub 用户名
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <img id="avatar" src="" alt="头像">
+            <h2 id="username"></h2>
+            <p id="bio"></p>
+            <a id="profile-link" href="" target="_blank">访问 GitHub 个人资料</a>
+        </div>
+        <div class="repos">
+            <div class="repos-header">
+                <h3>仓库</h3>
+                <a id="all-repos-link" href="" target="_blank">查看全部仓库</a>
+            </div>
+            <ul id="repo-list"></ul>
+        </div>
+    </div>
+    <footer>
+        AGPL-3.0 Licensed | Copyright © 2020-2024 Haoyang
+    </footer>
+
+    <script>
+        fetch(`https://api.github.com/users/${githubUser}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('avatar').src = data.avatar_url;
+                document.getElementById('username').textContent = data.login;
+                document.getElementById('bio').textContent = data.bio || '无简介';
+                document.getElementById('profile-link').href = data.html_url;
+                document.getElementById('all-repos-link').href = `${data.html_url}?tab=repositories`;
+            })
+            .catch(error => console.error('获取用户数据时出错:', error));
+
+        fetch(`https://api.github.com/users/${githubUser}/repos`)
+            .then(response => response.json())
+            .then(data => {
+                // 按 star 数量排序，并取前3个
+                const topRepos = data
+                    .filter(repo => repo.name !== githubUser)
+                    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                    .slice(0, 3);
+                
+                const repoList = document.getElementById('repo-list');
+                topRepos.forEach(repo => {
+                    const listItem = document.createElement('li');
+                    const repoLink = document.createElement('a');
+                    repoLink.href = repo.html_url;
+                    repoLink.textContent = repo.name;
+                    repoLink.target = '_blank';
+                    const repoDescription = document.createElement('p');
+                    repoDescription.textContent = repo.description || '无简介';
+                    const repoDetails = document.createElement('p');
+                    repoDetails.textContent = `Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count} | Language: ${repo.language}`;
+                    listItem.appendChild(repoLink);
+                    listItem.appendChild(repoDescription);
+                    listItem.appendChild(repoDetails);
+                    repoList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('获取仓库数据时出错:', error));
+    </script>
+</body>
+</html>
