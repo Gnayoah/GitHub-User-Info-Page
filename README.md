@@ -25,12 +25,12 @@ This is a web page that uses the GitHub API to display the specified GitHub user
     cd github-user-info
     ```
 
-3. Open the `index.html` file and edit the `githubUser` variable at the top to set the GitHub username you want to display:
+3. Open the `config.js` file and edit the `githubUser` variable at the top to set the GitHub username you want to display:
 
     ```html
-    <script>
-        const githubUser = 'Gnayoah';  // Change this to the GitHub username you want to display
-    </script>
+   
+    const githubUser = 'Gnayoah';  // Change this to the GitHub username you want to display
+    
     ```
 
 4. Open the `index.html` file in a browser to see the result.
