@@ -6,8 +6,12 @@
 
 - 显示指定 GitHub 用户的头像、用户名和个人简介。
 - 提供访问 GitHub 个人资料的链接。
-- 显示按星级数排序的前 3 个存储库。
+- 显示按星级数排序的前 6 个存储库。
 - 显示每个存储库的名称、描述、星级数、分支数和主要语言。
+- 深色模式。
+
+## 演示
+访问 [Gnayoah.com](https://gnayoah.com/)。
 
 ## 使用
 
@@ -33,10 +37,16 @@ const githubUser = 'Gnayoah'; // Change this to the GitHub username you want to 
 
 4. 在浏览器中打开 `index.html` 文件以查看结果。
 
-## 文件结构
+## 截图
+以下是使用 Google、Apple、Github 的 Github 帐户和我自己的 Github 帐户对该项目的一些截图。
 
-- `index.html` - 包含应用程序结构和逻辑的主 HTML 文件。
-- `style.css` - 包含应用程序所有样式的样式表文件。
+![图片](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/46146066-c6ef-4891-8908-a8448bc2996e)
+
+![图片](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/9b1011a5-abc2-4fcc-9af7-8565a80ff346)
+
+![图片](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/9abeee98-6054-4eda-9755-d60f86bd707f)
+
+![图片](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/cdb63aa9-1662-494e-b8e8-60bbd13737af)
 
 ## 许可证
 
