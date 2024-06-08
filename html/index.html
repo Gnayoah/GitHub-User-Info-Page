@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub 用户和仓库</title>
     <link rel="stylesheet" href="style.css">
-    <script>
-        const githubUser = 'Gnayoah';  // 修改此处的 GitHub 用户名
-    </script>
+    <script src="config.js"></script>
 </head>
 <body>
     <div class="container">
@@ -27,7 +25,6 @@
     </div>
     <footer>
         AGPL-3.0 Licensed | Copyright © 2020-2024 Haoyang
-    </footer>
 
     <script>
         fetch(`https://api.github.com/users/${githubUser}`)
