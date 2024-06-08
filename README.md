@@ -10,6 +10,7 @@ This is a web page that uses the GitHub API to display the specified GitHub user
 - Provide a link to visit the GitHub profile.
 - Display the top 3 repositories sorted by star count.
 - Show each repository's name, description, star count, fork count, and primary language.
+- Darkmode
 
 ## Usage
 
