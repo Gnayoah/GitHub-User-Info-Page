@@ -30,11 +30,14 @@
             <ul id="repo-list"></ul>
         </div>
     </div>
-    <footer id="footer-content"></footer>
+    <footer>
+        <a href="https://github.com/Gnayoah/GitHub-User-Info-Page" target="_blank">AGPL-3.0 License</a> | 
+        <a href="https://github.com/Gnayoah" target="_blank">Copyright © 2020-2024 Haoyang</a>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('footer-content').innerHTML = `${footerContent} | <a href="https://github.com/Gnayoah/GitHub-User-Info-Page" target="_blank">Copyright © 2020-2024 Haoyang</a>`;
+            // 其他脚本保持不变
         });
 
         function formatNumber(number) {
@@ -89,7 +92,11 @@
                     const repoDescription = document.createElement('p');
                     repoDescription.textContent = repo.description || '无简介';
                     const repoDetails = document.createElement('p');
-                    repoDetails.textContent = `Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count} | Language: ${repo.language}`;
+                    let detailsText = `Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count}`;
+                    if (repo.language) {
+                        detailsText += ` | ${repo.language}`;
+                    }
+                    repoDetails.textContent = detailsText;
                     repoDetails.classList.add('repo-details'); // 添加类名
                     listItem.appendChild(repoLink);
                     listItem.appendChild(repoDescription);
