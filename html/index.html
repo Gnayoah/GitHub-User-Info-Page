@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title"></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ayahub/webfont-harmony-sans-sc@1.0.0/css/index.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="config.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.title = pageTitle;
-            document.getElementById('page-title').textContent = pageTitle;
-        });
-    </script>
+    <style>
+        body {
+            font-family: 'HarmonyOS Sans SC', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="profile">
             <img id="avatar" src="" alt="头像">
             <h2 id="name"></h2>
-            <p id="username"></p>
+            <p id="username" class="username"></p>
             <p id="bio"></p>
             <a id="profile-link" href="" target="_blank">访问 GitHub 个人资料</a>
         </div>
         <div class="repos">
             <div class="repos-header">
-                <h3>仓库</h3>
+                <h3 id="repos-title">仓库</h3>
                 <a id="all-repos-link" href="" target="_blank">查看全部仓库</a>
             </div>
             <ul id="repo-list"></ul>
@@ -34,35 +34,54 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.title = pageTitle;
-            document.getElementById('page-title').textContent = pageTitle;
             document.getElementById('footer-content').innerHTML = `${footerContent} | <a href="https://github.com/Gnayoah/GitHub-User-Info-Page" target="_blank">Copyright © 2020-2024 Haoyang</a>`;
         });
+
+        function formatNumber(number) {
+            if (number >= 1000 && number < 1000000) {
+                return (number / 1000).toFixed(1) + 'k';
+            } else if (number >= 1000000) {
+                return (number / 1000000).toFixed(1) + 'M';
+            }
+            return number;
+        }
 
         fetch(`https://api.github.com/users/${githubUser}`)
             .then(response => response.json())
             .then(data => {
                 document.getElementById('avatar').src = data.avatar_url;
                 document.getElementById('name').textContent = data.name || '无昵称';
-                document.getElementById('username').textContent = `@${data.login}`;
+                document.getElementById('username').textContent = data.login; // 移除@符号
                 document.getElementById('bio').textContent = data.bio || '无简介';
                 document.getElementById('profile-link').href = data.html_url;
                 document.getElementById('all-repos-link').href = `${data.html_url}?tab=repositories`;
+
+                // 设置网页标题为 昵称（用户名）
+                document.title = `${data.name || '无昵称'} (${data.login})`;
+
+                // 设置仓库标题并显示总数
+                const reposTitle = `仓库 (${formatNumber(data.public_repos)})`;
+                document.getElementById('repos-title').textContent = reposTitle;
             })
             .catch(error => console.error('获取用户数据时出错:', error));
 
         fetch(`https://api.github.com/users/${githubUser}/repos`)
             .then(response => response.json())
             .then(data => {
-                // 按 star 数量排序，并取前3个
+                console.log(data); // 调试输出数据结构
+                if (!Array.isArray(data)) {
+                    throw new TypeError('Expected an array but got ' + typeof data);
+                }
+                // 按 star 数量排序，并取前6个
                 const topRepos = data
                     .filter(repo => repo.name !== githubUser)
                     .sort((a, b) => b.stargazers_count - a.stargazers_count)
-                    .slice(0, 3);
+                    .slice(0, 6);
                 
                 const repoList = document.getElementById('repo-list');
                 topRepos.forEach(repo => {
                     const listItem = document.createElement('li');
+                    listItem.classList.add('repo-item'); // 添加类名
                     const repoLink = document.createElement('a');
                     repoLink.href = repo.html_url;
                     repoLink.textContent = repo.name;
@@ -71,6 +90,7 @@
                     repoDescription.textContent = repo.description || '无简介';
                     const repoDetails = document.createElement('p');
                     repoDetails.textContent = `Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count} | Language: ${repo.language}`;
+                    repoDetails.classList.add('repo-details'); // 添加类名
                     listItem.appendChild(repoLink);
                     listItem.appendChild(repoDescription);
                     listItem.appendChild(repoDetails);
