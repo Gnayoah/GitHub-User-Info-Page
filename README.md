@@ -1,53 +1,49 @@
-# GitHub 用户信息展示
+# GitHub User Information Display
 
-这是一个使用 GitHub API 的网页应用程序，显示指定 GitHub 用户的头像、简介、个人资料链接以及按 star 数量排序的前 3 个热门仓库。每个仓库显示名称、简介、star 数量、fork 数量和主要编程语言。
+This is a web application that uses the GitHub API to display the specified GitHub user's avatar, bio, profile link, and the top 3 repositories sorted by star count. Each repository shows its name, description, star count, fork count, and primary language.
 
-## 功能
+## Features
 
-- 显示指定 GitHub 用户的头像、用户名和简介
-- 提供访问 GitHub 个人资料的链接
-- 按 star 数量排序并显示前 3 个热门仓库
-- 显示每个仓库的名称、简介、star 数量、fork 数量和主要编程语言
+- Display the specified GitHub user's avatar, username, and bio.
+- Provide a link to visit the GitHub profile.
+- Display the top 3 repositories sorted by star count.
+- Show each repository's name, description, star count, fork count, and primary language.
 
-## 使用方法
+## Usage
 
-1. 克隆该仓库到本地：
+1. Clone this repository to your local machine:
 
     ```bash
     git clone https://github.com/yourusername/github-user-info.git
     ```
 
-2. 进入项目目录：
+2. Navigate to the project directory:
 
     ```bash
     cd github-user-info
     ```
 
-3. 打开 `index.html` 文件并编辑顶部的 `githubUser` 变量，设置为你想要展示的 GitHub 用户名：
+3. Open the `index.html` file and edit the `githubUser` variable at the top to set the GitHub username you want to display:
 
     ```html
     <script>
-        const githubUser = 'Gnayoah';  // 修改此处的 GitHub 用户名
+        const githubUser = 'Gnayoah';  // Change this to the GitHub username you want to display
     </script>
     ```
 
-4. 打开 `index.html` 文件，使用浏览器查看效果。
+4. Open the `index.html` file in a browser to see the result.
 
-## 文件结构
+## File Structure
 
-- `index.html` - 主 HTML 文件，包含应用的结构和逻辑
-- `style.css` - 样式文件，包含应用的所有样式
+- `index.html` - The main HTML file containing the structure and logic of the application.
+- `style.css` - The stylesheet file containing all the styles for the application.
 
-## 许可证
+## License
 
-该项目基于 [GNU Affero General Public License v3.0 (AGPL-3.0)](LICENSE) 许可证开源。具体条款请参见 [LICENSE](LICENSE) 文件。
+This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](LICENSE). For details, see the [LICENSE](LICENSE) file.
 
-版权所有 © 2020-2024 Haoyang。保留所有权利。
+© 2020-2024 Haoyang. All rights reserved.
 
-## 贡献
+## Contributing
 
-欢迎提交 issue 和 pull request。如果你有任何建议或发现了 bug，请在 GitHub 上告诉我们。
-
-## 联系方式
-
-如有任何问题或建议，请发送邮件至 [your-email@example.com](mailto:your-email@example.com)。
+Issues and pull requests are welcome. If you have any suggestions or find a bug, please let us know on GitHub.
