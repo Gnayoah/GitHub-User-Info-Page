@@ -8,7 +8,7 @@ This is a web page that uses the GitHub API to display the specified GitHub user
 
 - Display the specified GitHub user's avatar, username, and bio.
 - Provide a link to visit the GitHub profile.
-- Display the top 3 repositories sorted by star count.
+- Display the top 6 repositories sorted by star count.
 - Show each repository's name, description, star count, fork count, and primary language.
 - Darkmode
 
