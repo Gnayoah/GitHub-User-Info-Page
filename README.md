@@ -17,7 +17,7 @@ Vist [Gnayoah.com](https://gnayoah.com/).
 
 ## Usage
 
-1. Clone this repository to your local machine:
+1. Clone this repository to your local:
 
     ```bash
     git clone https://github.com/Gnayoah/GitHub-User-Info-Page.git
