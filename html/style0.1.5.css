@@ -7,13 +7,47 @@ body, html {
     font-family: 'HarmonyOS Sans SC', sans-serif; /* 应用自定义字体 */
 }
 
+.navbar {
+    width: 100%;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e7e7e7;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
 .container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     width: 60vw; /* 固定宽度为屏幕的60% */
-    margin: 20px auto; /* 使 container 有上下边距，并水平居中 */
-    background: #fff;
+    margin: 70px auto 20px auto; /* 使 container 有上下边距，并水平居中 */
     padding: 20px;
     border-radius: 8px; /* 移除边框阴影 */
     flex-direction: row; /* 默认是水平布局 */
@@ -27,7 +61,7 @@ body, html {
     flex-shrink: 0; /* 确保 profile 不会被压缩 */
     position: -webkit-sticky;
     position: sticky;
-    top: 20px; /* 固定位置 */
+    top: 100px; /* 固定位置 */
 }
 
 .profile img {
@@ -156,6 +190,17 @@ footer a:visited, footer a:active {
     body, html {
         background-color: #0d1017; /* 深色背景 */
         color: #e0e0e0; /* 浅色字体 */
+    }
+    .navbar {
+        background-color: #1e1e1e; /* 深色背景 */
+        border-bottom: 1px solid #2e2e2e;
+    }
+    .navbar li a {
+        color: #e0e0e0;
+    }
+    .navbar li a:hover {
+        background-color: #333;
+        color: #fff;
     }
     .container {
         background: none; /* 移除container背景 */
