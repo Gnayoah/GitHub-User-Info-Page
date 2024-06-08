@@ -1,128 +1,83 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title"></title>
+    <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.title = pageTitle;
+            document.getElementById('page-title').textContent = pageTitle;
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <img id="avatar" src="" alt="头像">
+            <h2 id="name"></h2>
+            <p id="username"></p>
+            <p id="bio"></p>
+            <a id="profile-link" href="" target="_blank">访问 GitHub 个人资料</a>
+        </div>
+        <div class="repos">
+            <div class="repos-header">
+                <h3>仓库</h3>
+                <a id="all-repos-link" href="" target="_blank">查看全部仓库</a>
+            </div>
+            <ul id="repo-list"></ul>
+        </div>
+    </div>
+    <footer id="footer-content"></footer>
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 40vw; /* 固定宽度为屏幕的40% */
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    flex-direction: row; /* 默认是水平布局 */
-}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.title = pageTitle;
+            document.getElementById('page-title').textContent = pageTitle;
+            document.getElementById('footer-content').innerHTML = `${footerContent} | <a href="https://github.com/Gnayoah/GitHub-User-Info-Page" target="_blank">Copyright © 2020-2024 Haoyang</a>`;
+        });
 
-.profile {
-    text-align: center;
-    margin: 20px;
-    width: 250px; /* 加宽 profile div */
-}
+        fetch(`https://api.github.com/users/${githubUser}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('avatar').src = data.avatar_url;
+                document.getElementById('name').textContent = data.name || '无昵称';
+                document.getElementById('username').textContent = `@${data.login}`;
+                document.getElementById('bio').textContent = data.bio || '无简介';
+                document.getElementById('profile-link').href = data.html_url;
+                document.getElementById('all-repos-link').href = `${data.html_url}?tab=repositories`;
+            })
+            .catch(error => console.error('获取用户数据时出错:', error));
 
-.profile img {
-    border-radius: 50%;
-    width: 150px;
-}
-
-.profile a {
-    color: #0366d6;
-    text-decoration: none;
-}
-
-.profile a:hover {
-    text-decoration: underline;
-}
-
-.profile p {
-    margin: 10px 0;
-    color: #555;
-}
-
-.repos {
-    flex-grow: 1;
-    text-align: left;
-    margin: 20px;
-}
-
-.repos-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.repos-header h3 {
-    margin: 0;
-    color: #000; /* 设置标题为黑色 */
-}
-
-.repos-header a {
-    color: #666;
-    text-decoration: none;
-    font-weight: normal; /* 不加粗 */
-}
-
-.repos-header a:hover {
-    text-decoration: underline;
-}
-
-.repos ul {
-    list-style: none;
-    padding: 0;
-}
-
-.repos li {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #f2f3f5;
-    border-radius: 8px;
-}
-
-.repos a {
-    color: #0366d6;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.repos a:hover {
-    text-decoration: underline;
-}
-
-.repos p {
-    margin: 5px 0;
-    color: #555;
-}
-
-footer {
-    text-align: center;
-    margin: 20px;
-    font-size: 0.9em;
-    color: #666;
-}
-
-/* 移动设备布局 */
-@media (max-width: 768px) {
-    .container {
-        width: 90vw; /* 固定宽度为屏幕的90% */
-        flex-direction: column; /* 垂直布局 */
-        align-items: center; /* 居中对齐 */
-    }
-
-    .profile {
-        width: 100%; /* 宽度为100% */
-        text-align: center; /* 文本居中对齐 */
-    }
-
-    .repos {
-        width: 100%; /* 宽度为100% */
-        text-align: center; /* 文本居中对齐 */
-    }
-}
+        fetch(`https://api.github.com/users/${githubUser}/repos`)
+            .then(response => response.json())
+            .then(data => {
+                // 按 star 数量排序，并取前3个
+                const topRepos = data
+                    .filter(repo => repo.name !== githubUser)
+                    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                    .slice(0, 3);
+                
+                const repoList = document.getElementById('repo-list');
+                topRepos.forEach(repo => {
+                    const listItem = document.createElement('li');
+                    const repoLink = document.createElement('a');
+                    repoLink.href = repo.html_url;
+                    repoLink.textContent = repo.name;
+                    repoLink.target = '_blank';
+                    const repoDescription = document.createElement('p');
+                    repoDescription.textContent = repo.description || '无简介';
+                    const repoDetails = document.createElement('p');
+                    repoDetails.textContent = `Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count} | Language: ${repo.language}`;
+                    listItem.appendChild(repoLink);
+                    listItem.appendChild(repoDescription);
+                    listItem.appendChild(repoDetails);
+                    repoList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('获取仓库数据时出错:', error));
+    </script>
+</body>
+</html>
