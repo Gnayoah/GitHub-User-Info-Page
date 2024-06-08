@@ -19,6 +19,7 @@ body, html {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    flex-direction: row; /* 默认是水平布局 */
 }
 
 .profile {
@@ -105,4 +106,23 @@ footer {
     margin: 20px;
     font-size: 0.9em;
     color: #666;
+}
+
+/* 移动设备布局 */
+@media (max-width: 768px) {
+    .container {
+        width: 90vw; /* 固定宽度为屏幕的90% */
+        flex-direction: column; /* 垂直布局 */
+        align-items: center; /* 居中对齐 */
+    }
+
+    .profile {
+        width: 100%; /* 宽度为100% */
+        text-align: center; /* 文本居中对齐 */
+    }
+
+    .repos {
+        width: 100%; /* 宽度为100% */
+        text-align: center; /* 文本居中对齐 */
+    }
 }
