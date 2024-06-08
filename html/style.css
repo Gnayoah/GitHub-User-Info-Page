@@ -151,6 +151,45 @@ footer a:visited, footer a:active {
     text-decoration: none;
 }
 
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+    body, html {
+        background-color: #0d1017; /* 深色背景 */
+        color: #e0e0e0; /* 浅色字体 */
+    }
+    .container {
+        background: none; /* 移除container背景 */
+    }
+    .profile h2, .profile p#bio {
+        color: #e0e0e0; /* 浅色字体 */
+    }
+    .profile p#username {
+        color: #9e9e9e; /* 浅色字体 */
+    }
+    .repos-header h3 {
+        color: #e0e0e0; /* 浅色字体 */
+    }
+    .repos-header a {
+        color: #9e9e9e; /* 浅色链接 */
+    }
+    .repos li.repo-item {
+        background-color: #2e2e2e; /* 深色背景 */
+        color: #e0e0e0; /* 浅色字体 */
+    }
+    .repos a {
+        color: #82aaff; /* 浅蓝色链接 */
+    }
+    .repos p {
+        color: #b0b0b0; /* 浅色字体 */
+    }
+    footer {
+        color: #9e9e9e; /* 浅色字体 */
+    }
+    footer a {
+        color: #9e9e9e; /* 浅色链接 */
+    }
+}
+
 /* 移动设备布局 */
 @media (max-width: 768px) {
     .container {
