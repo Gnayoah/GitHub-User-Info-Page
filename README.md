@@ -13,7 +13,7 @@ This is a web page that uses the GitHub API to display the specified GitHub user
 - Darkmode
 
 ## Demo
-[Gnayoah.com](https://gnayoah.com/)
+Vist [Gnayoah.com](https://gnayoah.com/).
 
 ## Usage
 
