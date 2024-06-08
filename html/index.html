@@ -1,8 +1,3 @@
-// Copyright © 2020-2024 Gnayoah
-// Gnayoah.com
-// https://github.com/Gnayoah/GitHub-User-Info-Page
-// AGPL-3.0 License
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -19,6 +14,13 @@
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#" target="_blank">主页</a></li>
+            <li><a id="repos-link" href="#" target="_blank">仓库</a></li>
+            <li><a href="https://github.com/Gnayoah/GitHub-User-Info-Page" target="_blank">关于</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <div class="profile">
             <img id="avatar" src="" alt="头像">
@@ -42,7 +44,67 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 设置仓库链接
+            const reposLink = document.getElementById('repos-link');
+            reposLink.href = `https://github.com/${githubUser}?tab=repositories`;
+
             // 其他脚本保持不变
+            fetch(`https://api.github.com/users/${githubUser}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('avatar').src = data.avatar_url;
+                    document.getElementById('name').textContent = data.name || '无昵称';
+                    document.getElementById('username').textContent = data.login;
+                    document.getElementById('bio').textContent = data.bio || '无简介';
+                    document.getElementById('profile-link').href = data.html_url;
+                    document.getElementById('all-repos-link').href = `${data.html_url}?tab=repositories`;
+
+                    // 设置网页标题为 昵称（用户名）
+                    document.title = `${data.name || '无昵称'} (${data.login})`;
+
+                    // 设置仓库标题并显示总数
+                    const reposTitle = `仓库 (${formatNumber(data.public_repos)})`;
+                    document.getElementById('repos-title').textContent = reposTitle;
+                })
+                .catch(error => console.error('获取用户数据时出错:', error));
+
+            fetch(`https://api.github.com/users/${githubUser}/repos`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // 调试输出数据结构
+                    if (!Array.isArray(data)) {
+                        throw new TypeError('Expected an array but got ' + typeof data);
+                    }
+                    // 按 star 数量排序，并取前6个
+                    const topRepos = data
+                        .filter(repo => repo.name !== githubUser)
+                        .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                        .slice(0, 6);
+                    
+                    const repoList = document.getElementById('repo-list');
+                    topRepos.forEach(repo => {
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('repo-item'); // 添加类名
+                        const repoLink = document.createElement('a');
+                        repoLink.href = repo.html_url;
+                        repoLink.textContent = repo.name;
+                        repoLink.target = '_blank';
+                        const repoDescription = document.createElement('p');
+                        repoDescription.textContent = repo.description || '无简介';
+                        const repoDetails = document.createElement('p');
+                        let detailsText = `Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count}`;
+                        if (repo.language) {
+                            detailsText += ` | ${repo.language}`;
+                        }
+                        repoDetails.textContent = detailsText;
+                        repoDetails.classList.add('repo-details'); // 添加类名
+                        listItem.appendChild(repoLink);
+                        listItem.appendChild(repoDescription);
+                        listItem.appendChild(repoDetails);
+                        repoList.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error('获取仓库数据时出错:', error));
         });
 
         function formatNumber(number) {
@@ -53,63 +115,6 @@
             }
             return number;
         }
-
-        fetch(`https://api.github.com/users/${githubUser}`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('avatar').src = data.avatar_url;
-                document.getElementById('name').textContent = data.name || '无昵称';
-                document.getElementById('username').textContent = data.login; // 移除@符号
-                document.getElementById('bio').textContent = data.bio || '无简介';
-                document.getElementById('profile-link').href = data.html_url;
-                document.getElementById('all-repos-link').href = `${data.html_url}?tab=repositories`;
-
-                // 设置网页标题为 昵称（用户名）
-                document.title = `${data.name || '无昵称'} (${data.login})`;
-
-                // 设置仓库标题并显示总数
-                const reposTitle = `仓库 (${formatNumber(data.public_repos)})`;
-                document.getElementById('repos-title').textContent = reposTitle;
-            })
-            .catch(error => console.error('获取用户数据时出错:', error));
-
-        fetch(`https://api.github.com/users/${githubUser}/repos`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // 调试输出数据结构
-                if (!Array.isArray(data)) {
-                    throw new TypeError('Expected an array but got ' + typeof data);
-                }
-                // 按 star 数量排序，并取前6个
-                const topRepos = data
-                    .filter(repo => repo.name !== githubUser)
-                    .sort((a, b) => b.stargazers_count - a.stargazers_count)
-                    .slice(0, 6);
-                
-                const repoList = document.getElementById('repo-list');
-                topRepos.forEach(repo => {
-                    const listItem = document.createElement('li');
-                    listItem.classList.add('repo-item'); // 添加类名
-                    const repoLink = document.createElement('a');
-                    repoLink.href = repo.html_url;
-                    repoLink.textContent = repo.name;
-                    repoLink.target = '_blank';
-                    const repoDescription = document.createElement('p');
-                    repoDescription.textContent = repo.description || '无简介';
-                    const repoDetails = document.createElement('p');
-                    let detailsText = `Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count}`;
-                    if (repo.language) {
-                        detailsText += ` | ${repo.language}`;
-                    }
-                    repoDetails.textContent = detailsText;
-                    repoDetails.classList.add('repo-details'); // 添加类名
-                    listItem.appendChild(repoLink);
-                    listItem.appendChild(repoDescription);
-                    listItem.appendChild(repoDetails);
-                    repoList.appendChild(listItem);
-                });
-            })
-            .catch(error => console.error('获取仓库数据时出错:', error));
     </script>
 </body>
 </html>
