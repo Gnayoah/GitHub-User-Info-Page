@@ -33,7 +33,7 @@ Vist [Gnayoah.com](https://gnayoah.com/).
 
     ```html
    
-    const githubUser = 'Gnayoah';  // Change this to the GitHub username you want to display
+    const githubUser = 'Gnayoah';  
     
     ```
 
