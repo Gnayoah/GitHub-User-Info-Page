@@ -14,7 +14,7 @@ This is a web page that uses the GitHub API to display the specified GitHub user
 1. Clone this repository to your local machine:
 
     ```bash
-    git clone https://github.com/yourusername/github-user-info.git
+    git clone https://github.com/Gnayoah/GitHub-User-Info-Page.git
     ```
 
 2. Navigate to the project directory:
