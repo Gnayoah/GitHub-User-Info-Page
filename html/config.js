@@ -1,1 +1,1 @@
-const githubUser = 'Gnayoah';  // 修改此处的 GitHub 用户名
+const githubUser = 'Gnayoah';  // Change this to the GitHub username you want to display
