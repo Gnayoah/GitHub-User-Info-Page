@@ -23,12 +23,12 @@ git clone https://github.com/Gnayoah/GitHub-User-Info-Page.git
 cd github-user-info
 ```
 
-3. 打开 `index.html` 文件并编辑顶部的 `githubUser` 变量以设置要显示的 GitHub 用户名：
+3. 打开 `config.js` 文件并编辑顶部的 `githubUser` 变量以设置要显示的 GitHub 用户名：
 
 ```html
-<script>
-const githubUser = 'Gnayoah'; // 将其更改为要显示的 GitHub 用户名
-</script>
+
+const githubUser = 'Gnayoah'; // Change this to the GitHub username you want to display
+
 ```
 
 4. 在浏览器中打开 `index.html` 文件以查看结果。
