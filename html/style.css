@@ -141,6 +141,16 @@ footer {
     color: #666;
 }
 
+footer a {
+    color: #666666; /* 设置footer中的a标签颜色 */
+    text-decoration: none; /* 去掉下划线 */
+}
+
+footer a:visited, footer a:active {
+    color: #666666; /* 去掉点击后的效果 */
+    text-decoration: none;
+}
+
 /* 移动设备布局 */
 @media (max-width: 768px) {
     .container {
