@@ -50,7 +50,7 @@ const githubUser = 'Gnayoah';
 
 本项目根据 [GNU Affero 通用公共许可证 v3.0 (AGPL-3.0)](LICENSE) 获得许可。有关详细信息，请参阅 [LICENSE](LICENSE) 文件。
 
-© 2024 Gnayoah. 保留所有权利
+© 2024 Gnayoah. All rights reserved.
 
 ## 贡献
 
