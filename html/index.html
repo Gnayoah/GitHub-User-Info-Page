@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title"></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ayahub/webfont-harmony-sans-sc@1.0.0/css/index.min.css">
-    <link rel="stylesheet" href="style0.1.6.css">
+    <link rel="stylesheet" href="style0.1.7.css">
     <script src="config.js"></script>
     <style>
         body {
@@ -32,8 +32,12 @@
     <div class="container">
         <div class="profile">
             <img id="avatar" src="" alt="头像">
-            <h2 id="name"></h2>
-            <p id="username" class="username"></p>
+            <div class="info">
+                <div>
+                    <h2 id="name"></h2>
+                    <p id="username" class="username"></p>
+                </div>
+            </div>
             <p id="bio"></p>
             <a id="profile-link" href="" target="_blank">访问 GitHub 个人资料</a>
         </div>
@@ -47,7 +51,7 @@
     </div>
     <footer>
         <a href="https://github.com/Gnayoah/GitHub-User-Info-Page" target="_blank">AGPL-3.0 License</a> | 
-        <a href="https://github.com/Gnayoah" target="_blank">Copyright © 2020-2024 Haoyang</a>
+        <a href="https://github.com/Gnayoah" target="_blank">© 2020-2024 Gnayoah</a>
     </footer>
 
     <script>
@@ -134,7 +138,7 @@
                         listItem.classList.add('repo-item'); // 添加类名
                         const repoLink = document.createElement('a');
                         repoLink.href = repo.html_url;
-                        repoLink.textContent = repo.name;
+                        repoLink.textContent = repo.name.replace(/-/g, ' '); // 将 "-" 替换为空格
                         repoLink.target = '_blank';
                         const repoDescription = document.createElement('p');
                         repoDescription.textContent = repo.description || '无简介';
