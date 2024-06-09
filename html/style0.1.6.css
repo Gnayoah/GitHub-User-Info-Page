@@ -7,6 +7,37 @@ body, html {
     font-family: 'HarmonyOS Sans SC', sans-serif; /* 应用自定义字体 */
 }
 
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #636C76;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .navbar {
     width: 100%;
     background-color: #f8f8f8;
@@ -190,6 +221,12 @@ footer a:visited, footer a:active {
     body, html {
         background-color: #0d1017; /* 深色背景 */
         color: #e0e0e0; /* 浅色字体 */
+    }
+    #loading-overlay {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    .spinner {
+        border-left-color: #e0e0e0;
     }
     .navbar {
         background-color: #1e1e1e; /* 深色背景 */
