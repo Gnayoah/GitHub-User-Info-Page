@@ -53,7 +53,7 @@ Here are some screenshots of this project.
 
 This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](LICENSE). For details, see the [LICENSE](LICENSE) file.
 
-© 2024 Haoyang. All rights reserved.
+© 2024 Gnayoah. All rights reserved.
 
 ## Contributing
 
