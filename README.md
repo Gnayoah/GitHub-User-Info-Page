@@ -43,7 +43,8 @@ Vist [Gnayoah.com](https://gnayoah.com/).
 ## Screenshot
 Here are some screenshots of this project.
 
-![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/c7a71f6c-e12c-45f4-94f6-ff7337e4917f)
+![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/ce059e71-2163-4e47-a28d-62ed932e7f07)
+
 
 
 
