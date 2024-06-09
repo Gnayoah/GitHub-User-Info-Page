@@ -45,8 +45,6 @@ Here are some screenshots of this project.
 ![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/c7a71f6c-e12c-45f4-94f6-ff7337e4917f)
 
 
-![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/89b5925a-d8e6-4c2f-929e-9c48a273e419)
-
 
 
 ## License
