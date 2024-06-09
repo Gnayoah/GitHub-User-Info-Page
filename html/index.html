@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title"></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ayahub/webfont-harmony-sans-sc@1.0.0/css/index.min.css">
-    <link rel="stylesheet" href="style0.1.5.css">
+    <link rel="stylesheet" href="style0.1.6.css">
     <script src="config.js"></script>
     <style>
         body {
@@ -14,6 +14,9 @@
     </style>
 </head>
 <body>
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
     <nav class="navbar">
         <ul>
             <li><a href="#" target="_blank">主页</a></li>
@@ -39,7 +42,7 @@
     </div>
     <footer>
         <a href="https://github.com/Gnayoah/GitHub-User-Info-Page" target="_blank">AGPL-3.0 License</a> | 
-        <a href="https://github.com/Gnayoah" target="_blank">Copyright © 2020-2024 Gnayoah</a>
+        <a href="https://github.com/Gnayoah" target="_blank">Copyright © 2020-2024 Haoyang</a>
     </footer>
 
     <script>
@@ -48,8 +51,31 @@
             const reposLink = document.getElementById('repos-link');
             reposLink.href = `https://github.com/${githubUser}?tab=repositories`;
 
-            // 其他脚本保持不变
-            fetch(`https://api.github.com/users/${githubUser}`)
+            // 显示加载动画
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.style.display = 'flex';
+
+            // 加载字体完成后隐藏加载动画，确保最少加载1秒
+            const start = Date.now();
+            document.fonts.ready.then(() => {
+                const duration = 1000 - (Date.now() - start);
+                setTimeout(() => {
+                    fetchData().finally(() => {
+                        loadingOverlay.style.display = 'none';
+                    });
+                }, duration > 0 ? duration : 0);
+            });
+        });
+
+        function fetchData() {
+            return Promise.all([
+                fetchUserData(),
+                fetchReposData()
+            ]);
+        }
+
+        function fetchUserData() {
+            return fetch(`https://api.github.com/users/${githubUser}`)
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('avatar').src = data.avatar_url;
@@ -63,12 +89,28 @@
                     document.title = `${data.name || '无昵称'} (${data.login})`;
 
                     // 设置仓库标题并显示总数
-                    const reposTitle = `仓库 (${formatNumber(data.public_repos)})`;
-                    document.getElementById('repos-title').textContent = reposTitle;
+                    let publicRepos = data.public_repos;
+                    if (publicRepos <= 1001) {
+                        fetch(`https://api.github.com/users/${githubUser}/repos`)
+                            .then(response => response.json())
+                            .then(reposData => {
+                                if (reposData.some(repo => repo.name === githubUser)) {
+                                    publicRepos--;
+                                }
+                                const reposTitle = `仓库 (${formatNumber(publicRepos)})`;
+                                document.getElementById('repos-title').textContent = reposTitle;
+                            })
+                            .catch(error => console.error('获取仓库数据时出错:', error));
+                    } else {
+                        const reposTitle = `仓库 (${formatNumber(publicRepos)})`;
+                        document.getElementById('repos-title').textContent = reposTitle;
+                    }
                 })
                 .catch(error => console.error('获取用户数据时出错:', error));
+        }
 
-            fetch(`https://api.github.com/users/${githubUser}/repos`)
+        function fetchReposData() {
+            return fetch(`https://api.github.com/users/${githubUser}/repos`)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data); // 调试输出数据结构
@@ -105,7 +147,7 @@
                     });
                 })
                 .catch(error => console.error('获取仓库数据时出错:', error));
-        });
+        }
 
         function formatNumber(number) {
             if (number >= 1000 && number < 1000000) {
