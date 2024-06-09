@@ -40,13 +40,8 @@ const githubUser = 'Gnayoah';
 ## 截图
 以下是使用 Google、Apple、Github 的 Github 帐户和我自己的 Github 帐户对该项目的一些截图。
 
-![图片](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/46146066-c6ef-4891-8908-a8448bc2996e)
+![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/6e2bfaee-2e9d-47d5-930d-99018e7f8696)
 
-![图片](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/9b1011a5-abc2-4fcc-9af7-8565a80ff346)
-
-![图片](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/9abeee98-6054-4eda-9755-d60f86bd707f)
-
-![图片](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/cdb63aa9-1662-494e-b8e8-60bbd13737af)
 
 ## 许可证
 
