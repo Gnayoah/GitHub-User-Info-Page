@@ -152,6 +152,7 @@ body, html {
     color: #666;
     text-decoration: none;
     font-weight: normal; /* 不加粗 */
+    margin-right: 10px; /* 添加右边外边距 */
 }
 
 .repos-header a:hover {
@@ -166,8 +167,8 @@ body, html {
 }
 
 .repos li.repo-item {
-    margin: 10px 10px 10px 0; /* 去掉左边距 */
-    padding: 10px;
+    margin: 10px 10px 5px 0; /* 去掉左边距 */
+    padding: 20px; /* 添加填充以保持内边距一致 */
     background-color: #f2f3f5;
     border-radius: 8px;
     width: calc(50% - 10px); /* 每行两个仓库，减去间距 */
@@ -182,14 +183,18 @@ body, html {
     margin-right: 0; /* 去掉右边距 */
 }
 
+.repos li.repo-item a {
+    text-decoration: none; /* 去掉下划线 */
+}
+
+.repos li.repo-item a:hover {
+    text-decoration: underline; /* 添加下划线 */
+}
+
 .repos a {
     color: #0366d6;
     text-decoration: none;
     font-weight: bold;
-}
-
-.repos a:hover {
-    text-decoration: underline;
 }
 
 .repos p {
@@ -199,6 +204,7 @@ body, html {
 
 .repos p.repo-details {
     margin-top: auto; /* 确保此元素在列表项的底部 */
+    margin-bottom: 0; /* 确保底部外边距为0 */
 }
 
 footer {
@@ -232,8 +238,10 @@ footer a:visited, footer a:active {
         border-left-color: #e0e0e0;
     }
     .navbar {
-        background-color: #1e1e1e; /* 深色背景 */
+        background-color: rgba(30, 30, 30, 0.8); /* 深色背景 */
         border-bottom: 1px solid #2e2e2e;
+        backdrop-filter: blur(10px); /* 添加高斯模糊 */
+        -webkit-backdrop-filter: blur(10px); /* 添加高斯模糊 */
     }
     .navbar li a {
         color: #e0e0e0;
