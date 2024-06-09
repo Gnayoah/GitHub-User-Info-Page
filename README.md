@@ -40,8 +40,9 @@ Vist [Gnayoah.com](https://gnayoah.com/).
 4. Open the `index.html` file in a browser to see the result.
 
 ## Screenshot
-Here are some screenshots of this project using Google, Apple, Github’s Github accounts, and my own Github account.
-![daca4931ab2d76fab8dfd0b584149c8](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/05acfb43-2516-4042-afd4-7bb44b783eb1)
+Here are some screenshots of this project.
+
+![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/c7a71f6c-e12c-45f4-94f6-ff7337e4917f)
 
 
 ![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/89b5925a-d8e6-4c2f-929e-9c48a273e419)
