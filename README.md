@@ -42,7 +42,8 @@ Vist [Gnayoah.com](https://gnayoah.com/).
 ## Screenshot
 Here are some screenshots of this project using Google, Apple, Github’s Github accounts, and my own Github account.
 
-![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/46146066-c6ef-4891-8908-a8448bc2996e)
+![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/89b5925a-d8e6-4c2f-929e-9c48a273e419)
+
 
 
 ## License
