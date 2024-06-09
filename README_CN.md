@@ -38,7 +38,6 @@ const githubUser = 'Gnayoah';
 4. 在浏览器中打开 `index.html` 文件以查看结果。
 
 ## 截图
-以下是使用 Google、Apple、Github 的 Github 帐户和我自己的 Github 帐户对该项目的一些截图。
 
 ![image](https://github.com/Gnayoah/GitHub-User-Info-Page/assets/79068081/6e2bfaee-2e9d-47d5-930d-99018e7f8696)
 
