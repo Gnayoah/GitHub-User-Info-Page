@@ -79,7 +79,8 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    width: 60vw; /* 固定宽度为屏幕的60% */
+    max-width: 1200px; /* 固定宽度为屏幕的60% */
+    
     margin: 70px auto 20px auto; /* 使 container 有上下边距，并水平居中 */
     padding: 20px;
     border-radius: 8px; /* 移除边框阴影 */
