@@ -8,9 +8,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title"></title>
+    <title>Gnayoah Homepage</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ayahub/webfont-harmony-sans-sc@1.0.0/css/index.min.css">
-    <link rel="stylesheet" href="style0.1.7.css">
+    <link rel="stylesheet" href="style0.1.6.7.css">
     <script src="config.js"></script>
     <style>
         body {
@@ -24,9 +24,9 @@
     </div>
     <nav class="navbar">
         <ul>
-            <li><a href="#" target="_blank">主页</a></li>
+            <li><a id="home-link" href="#" target="_blank">主页</a></li>
             <li><a id="repos-link" href="#" target="_blank">仓库</a></li>
-            <li><a href="https://github.com/Gnayoah/GitHub-User-Info-Page" target="_blank">关于</a></li>
+            <li><a id="about-link" href="https://github.com/Gnayoah/GitHub-User-Info-Page" target="_blank">关于</a></li>
         </ul>
     </nav>
     <div class="container">
@@ -56,6 +56,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // 设置多语言支持
+            const userLang = navigator.language || navigator.userLanguage;
+            const isEnglish = userLang.startsWith('en');
+
+            if (isEnglish) {
+                document.getElementById('home-link').textContent = 'Home';
+                document.getElementById('repos-link').textContent = 'Repositories';
+                document.getElementById('about-link').textContent = 'About';
+                document.getElementById('profile-link').textContent = 'View GitHub Profile';
+                document.getElementById('repos-title').textContent = 'Repositories';
+                document.getElementById('all-repos-link').textContent = 'View All Repositories';
+            }
+
             // 设置仓库链接
             const reposLink = document.getElementById('repos-link');
             reposLink.href = `https://github.com/${githubUser}?tab=repositories`;
@@ -107,12 +120,12 @@
                                     publicRepos--;
                                 }
                                 const reposTitle = `仓库 (${formatNumber(publicRepos)})`;
-                                document.getElementById('repos-title').textContent = reposTitle;
+                                document.getElementById('repos-title').textContent = isEnglish ? `Repositories (${formatNumber(publicRepos)})` : reposTitle;
                             })
                             .catch(error => console.error('获取仓库数据时出错:', error));
                     } else {
                         const reposTitle = `仓库 (${formatNumber(publicRepos)})`;
-                        document.getElementById('repos-title').textContent = reposTitle;
+                        document.getElementById('repos-title').textContent = isEnglish ? `Repositories (${formatNumber(publicRepos)})` : reposTitle;
                     }
                 })
                 .catch(error => console.error('获取用户数据时出错:', error));
@@ -141,7 +154,7 @@
                         repoLink.textContent = repo.name.replace(/-/g, ' '); // 将 "-" 替换为空格
                         repoLink.target = '_blank';
                         const repoDescription = document.createElement('p');
-                        repoDescription.textContent = repo.description || '无简介';
+                        repoDescription.textContent = repo.description || (isEnglish ? 'No description' : '无简介');
                         const repoDetails = document.createElement('p');
                         let detailsText = `Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count}`;
                         if (repo.language) {
