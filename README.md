@@ -12,6 +12,7 @@ This is a web page that uses the GitHub API to display the specified GitHub user
 - Show each repository's name, description, star count, fork count, and primary language.
 - Darkmode
 - Adaptive mobile and PC pages
+- English & Simplified Chinese support
 
 ## Demo
 Vist [Gnayoah.com](https://gnayoah.com/).
