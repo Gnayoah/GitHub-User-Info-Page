@@ -58,4 +58,4 @@ This project is licensed under the [GNU Affero General Public License v3.0 (AGPL
 
 ## Contributing
 
-Issues and pull requests are welcome. If you have any suggestions or find a bug, please let us know on GitHub.
+Issues and pull requests are welcome. If you have any suggestions or find a bug, please let me know on GitHub.
